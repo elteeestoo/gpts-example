@@ -1,0 +1,93 @@
+@font-face {
+  font-family: 'SoehneCircleBuch'; /* Asigna un nombre a la fuente */
+  src: url('soehne-circle-buch.woff2') format('woff2'); /* Especifica la ruta del archivo de la fuente */
+  font-weight: normal; /* Define el peso de la fuente, si es necesario */
+  font-style: normal; /* Define el estilo de la fuente, si es necesario */
+}
+
+body{
+  display: flex;
+}
+
+aside{
+  background-color: hsl(0, 0%, 0%);
+  height: 100vh;
+  max-width: 260px;
+  width: 260px;
+}
+
+main{
+  background-color: hsl(235, 11%, 23%);
+  height: 100vh;
+  width: 100%;
+}
+
+.history{
+
+}
+
+.history-record{
+
+}
+
+.history-record .history-record-title{
+
+}
+
+.history-record .history-record-title h3{
+  color: hsl(0, 0%, 40%);
+  font-family: 'SoehneCircleBuch', sans-serif; 
+  font-size: 0.8rem;
+}
+
+.history-record .history-record-messages{
+
+}
+
+.user{
+
+}
+
+.user-logo{
+
+}
+
+.user-name{
+
+}
+
+.welcome{
+
+}
+
+.welcome-logo{
+
+}
+
+.welcome-title{
+
+}
+
+.examples{
+
+}
+
+.example{
+
+}
+
+.example-title{
+
+}
+
+.example-description{
+
+}
+
+.message-input{
+
+}
+
+.form-element{
+
+}
