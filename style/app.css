@@ -1,47 +1,36 @@
 @font-face {
   font-family: 'SoehneBuch'; 
-  src: url('soehne-buch.woff2') format('woff2'); 
-  font-weight: normal; 
   font-style: normal; 
+  font-weight: normal; 
+  src: url('soehne-buch.woff2') format('woff2'); 
 }
 
 @font-face {
   font-family: 'SoehneMonoBuch'; 
-  src: url('soehne-mono-buch.woff2') format('woff2'); 
-  font-weight: normal; 
   font-style: normal; 
+  font-weight: normal; 
+  src: url('soehne-mono-buch.woff2') format('woff2'); 
 }
 
 @font-face {
   font-family: 'SoehneHalbfett'; 
-  src: url('soehne-halbfett.woff2') format('woff2'); 
-  font-weight: normal; 
   font-style: normal; 
+  font-weight: normal; 
+  src: url('soehne-halbfett.woff2') format('woff2'); 
 }
 
 body{
   display: flex;
   margin: 0;
+  min-height: 100vh;
 }
 
 aside{
   background-color: hsl(0, 0%, 0%);
-  max-height: 100vh;
-  max-width: 260px;
-  position: relative;
+  min-width: 235px;
+  max-width: 235px;
   overflow: hidden;
-  width: 260px;
-}
-
-aside::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 5rem; 
-  background: linear-gradient(to right, hsla(0, 0%, 0%, 0), hsl(0, 0%, 0%)); 
-  z-index: 10;
+  position: relative;
 }
 
 main{
@@ -49,14 +38,33 @@ main{
   background-color: hsl(235, 11%, 23%);
   display: flex;
   flex-direction: column;
-  height: 100vh;
   width: 100%;
 }
 
 .history{
-  height: 80vh;
-  max-height: 80vh;
+  max-height: 90vh;
+  overflow-x: hidden; 
+  overflow-y: auto;
   padding: 1rem 0;
+  width: 100%;
+}
+
+.history::-webkit-scrollbar{
+  background: transparent; 
+  width: 0;
+}
+
+.history:hover::-webkit-scrollbar{
+  width: 5px; 
+}
+
+.history:hover::-webkit-scrollbar-thumb{
+  background-color: hsl(0, 0%, 53%); 
+  border-radius: 1rem;
+}
+
+.history:hover::-webkit-scrollbar-thumb:hover{
+  background-color: hsl(0, 0%, 78%); 
 }
 
 .history-record{
@@ -64,7 +72,7 @@ main{
 }
 
 .history-record .history-record-title{
-  margin-bottom: 1.5rem;
+  margin: 0 1rem 1rem 1rem;  
 }
 
 .history-record .history-record-title h3{
@@ -78,19 +86,56 @@ main{
 .history-record .history-record-messages ul{
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
 .history-record .history-record-messages ul li{
+  margin: 0 0.5rem;
+  max-width: 85%;
+}
+
+.history-record .history-record-messages ul li a{
   color: hsl(0, 0%, 100%);
+  display: inline-block;
   font-family: Arial, Helvetica, sans-serif; 
   font-size: 0.8rem;
   overflow: hidden;
-  text-overflow: hidden;
+  padding: 0.5rem;
+  position: relative;
+  text-decoration: none;
+  width: 100%;
   white-space: nowrap;
+  z-index: 0;
+}
+
+.history-record .history-record-messages ul li a::after {
+  background: linear-gradient(90deg, hsla(0, 0%, 0%, 0) 0%, hsla(0, 0%, 0%, 0.502) 50%, hsl(0, 0%, 0%) 100%);
+  bottom: 0;
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 2rem; 
+  z-index: 1000;
+} 
+
+.history-record .history-record-messages ul li a:hover{
+  background-color: hsl(220, 4%, 13%);
+  border-radius: 0.3rem;
+}
+
+.history-record .history-record-messages ul li a:hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 5rem; 
+  background: linear-gradient(90deg, hsla(220, 4%, 13%, 0) 0%, hsla(220, 4%, 13%, 0.5) 50%, hsla(220, 4%, 13%, 1) 100%);
+  z-index: 1000;
 }
 
 .user{
@@ -103,7 +148,6 @@ main{
 
 .user-logo{
   align-items: center;
-  background-color: hsl(275, 100%, 25%);
   border-radius: 50%;
   display: flex;
   height: 2rem;
@@ -128,16 +172,15 @@ main{
   font-size: 0.9rem;
   margin: 0;
   overflow: hidden;
-  text-overflow: hidden;
   white-space: nowrap;
 }
 
 .conversation{
   align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  height: 80vh;
-  max-height: 80vh;
+  min-height: 75vh;
   width: 40%;
 }
 
@@ -197,6 +240,11 @@ main{
   gap: 0.2rem;
   padding: 0.5rem 0.75rem;
   width: 45%;
+}
+
+.example:hover{
+  background-color: hsl(236, 10%, 28%);
+  cursor: pointer;
 }
 
 .example-title h2{
