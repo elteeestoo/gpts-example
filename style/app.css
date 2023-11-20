@@ -15,7 +15,6 @@ aside{
   background-color: hsl(0, 0%, 0%);
   min-width: 235px;
   max-width: 235px;
-  overflow: hidden;
   position: relative;
 }
 
@@ -73,6 +72,8 @@ main{
 
 .new-conversation-model-start{
   align-self: center;
+  position: relative;
+  display: inline-block;
 }
 
 .new-conversation-model-start svg{
@@ -81,6 +82,40 @@ main{
 
 .new-conversation-model-start svg path{
   fill: grey;
+}
+
+.new-conversation-model-start .tooltiptext {
+  background-color: black;
+  border-radius: 0.5rem;
+  color: #fff;
+  font-family: 'SoehneBuch', sans-serif;
+  font-size: 0.8rem;
+  margin-top: -0.5rem;
+  margin-left: 3rem;
+  opacity: 0;
+  padding: 0.5rem 0;
+  pointer-events: none; 
+  position: absolute;
+  text-align: center;
+  transition: opacity 0.3s;
+  visibility: hidden;
+  width: 100px;
+  z-index: 1001;
+}
+
+.new-conversation-model-start .tooltiptext::after {
+  border-color: transparent #000000 transparent transparent;
+  border-style: solid;
+  border-width: 5px;
+  content: " ";
+  left: -10px;
+  position: absolute;
+  top: 35%;
+}
+
+.new-conversation-model-start:hover .tooltiptext {
+  opacity: 1;
+  visibility: visible;
 }
 
 .history{
@@ -181,6 +216,7 @@ main{
 
 .user{
   bottom: 0;
+  cursor: pointer;
   display: flex;
   gap: 0.5rem;
   padding: 1rem;
@@ -308,31 +344,69 @@ main{
   white-space: nowrap;
 }
 
-.example-send{
+.example .example-send{
   align-items: center;
   background-color: hsla(236, 10%, 28%, 0.911);
   display: flex;
-  height: 100%;
+  height: 90%;
   justify-content: center;
+  opacity: 0;
   position: absolute;
   right: 0;
   width: 10%;
   z-index: 1000;
 }
 
+.example:hover .example-send{
+  opacity: 1;
+}
+
 .example-send-button{
   background-color: hsl(235, 11%, 23%);
+  border-radius: 0.3rem;
   padding: 0.25rem;
 }
 
 .example-send-button svg{
-  stroke-width: 2;
-  height: 1rem;
-  width: 1rem;
+  height: 0.8rem;
+  width: 0.8rem;
 }
 
 .example-send-button svg path{
   fill: white;
+}
+
+.example-send-button .tooltiptext{
+  background-color: black;
+  border-radius: 0.5rem;
+  color: #fff;
+  font-family: 'SoehneBuch', sans-serif;
+  font-size: 0.8rem;
+  margin-top: -3.5rem;
+  margin-left: -5rem;
+  opacity: 0;
+  padding: 0.5rem 0;
+  pointer-events: none; 
+  position: absolute;
+  text-align: center;
+  transition: opacity 0.3s;
+  width: 150px;
+  z-index: 1001;
+}
+
+.example-send-button .tooltiptext::after {
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgb(0, 0, 0) transparent transparent transparent;
+  content: "";
+  left: 45%;
+  position: absolute;
+  top: 100%;   
+}
+
+.example-send-button:hover .tooltiptext{
+  opacity: 1;
+  visibility: visible;
 }
 
 .message-input{
@@ -387,10 +461,11 @@ main{
 }
 
 .message-input .send-button button{
+  align-items: center;
   background-color: hsl(235, 7%, 31%);
   border: none;
   border-radius: 0.5rem;
-  cursor: pointer;
+  display: flex;
   padding: 0.1rem 0.2rem;
 }
 
@@ -398,3 +473,47 @@ main{
   color:hsl(0, 0%, 0%, 0.3);
   width: 1.3rem;
 }
+
+.message-input .send-button.active button{
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.message-input .send-button.active svg{
+  color:hsl(0, 0%, 0%);
+}
+
+.send-button .tooltiptext{
+  background-color: black;
+  border-radius: 0.5rem;
+  color: #fff;
+  font-family: 'SoehneBuch', sans-serif;
+  font-size: 0.8rem;
+  margin-top: -5rem;
+  margin-left: -3rem;
+  opacity: 0;
+  padding: 0.5rem 0;
+  pointer-events: none; 
+  position: absolute;
+  text-align: center;
+  transition: opacity 0.3s;
+  width: 120px;
+  z-index: 1001;
+}
+
+.send-button .tooltiptext::after {
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgb(0, 0, 0) transparent transparent transparent;
+  content: "";
+  left: 45%;
+  position: absolute;
+  top: 100%;   
+}
+
+.send-button:hover .tooltiptext{
+  opacity: 1;
+  visibility: visible;
+}
+
+
