@@ -24,8 +24,10 @@ class Aside extends HTMLElement {arrowle
                 height: 100%;
                 max-width: 235px;
                 min-width: 235px;
+                overflow: hidden;
                 transition: 0.2s;
             }
+
             aside.active{
                 max-width: 0px;
                 min-width: 0px;
@@ -61,6 +63,7 @@ class Aside extends HTMLElement {arrowle
         
         let arrowButton = this.shadow.querySelector(".hide-button")
         let aside = this.shadow.querySelector("aside")
+        
         
         arrowButton.addEventListener("click", () => {
             arrowButton.classList.toggle("active")
