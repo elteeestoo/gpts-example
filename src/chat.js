@@ -3,8 +3,18 @@ class Chat extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'open' });
+        document.addEventListener('start-chat', this.handleStartChat.bind(this)); 
+        document.addEventListener('new-chat', this.handleNewChat.bind(this))
     }
-  
+    
+    handleStartChat() {
+        this.shadow.innerHTML = ""
+    }
+
+    handleNewChat() {
+        this.render()
+    }
+
     connectedCallback() {
   
         document.addEventListener("showModalDelete", (event => {

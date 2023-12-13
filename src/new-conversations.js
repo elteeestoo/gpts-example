@@ -134,27 +134,20 @@ class NewConversations extends HTMLElement {arrowle
   
         `
   
-          let input = this.shadow.querySelector(".input-text");
-          
-          input.addEventListener("input" , () => {
+        let newConversation = this.shadow.querySelector(".new-conversation")
               
-              const sendButton = this.shadow.querySelector(".send-button")
-              const disabledButton = this.shadow.querySelector(".send-button button")
-              if (input.value.length > 0) {
-                  sendButton.classList.add("active");
-                  disabledButton.disabled = false;
-              }
-  
-              if (input.value.length <= 0) {
-                  sendButton.classList.remove("active");
-                  disabledButton.disabled = true;
-              }
-              
-          })
-      }
+        newConversation.addEventListener("click", (event) =>{
+            event.preventDefault();
+            document.dispatchEvent(new CustomEvent('new-chat', {
+
+            }))
+      
+        })
+    
+    }
   
       
   
-  }
+}
   
-  customElements.define('conversations-component', NewConversations);
+customElements.define('conversations-component', NewConversations);

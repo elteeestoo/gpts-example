@@ -1,22 +1,22 @@
 class UserInput extends HTMLElement {
 
-  constructor() {
-      super();
-      this.shadow = this.attachShadow({ mode: 'open' });
-  }
+    constructor() {
+        super();
+        this.shadow = this.attachShadow({ mode: 'open' });
+    }
 
-  connectedCallback() {
+    connectedCallback() {
 
-      document.addEventListener("showModalDelete", (event => {
-          this.openModal()
-      }));
+        document.addEventListener("showModalDelete", (event => {
+            this.openModal()
+        }));
 
-      this.render()
-  }
+        this.render()
+    }
 
-  render() {
+    render() {
 
-      this.shadow.innerHTML =
+        this.shadow.innerHTML =
       /*html*/`
     <style>
         .message-input{
@@ -155,11 +155,12 @@ class UserInput extends HTMLElement {
       `
 
         let input = this.shadow.querySelector(".input-text");
-        
-        input.addEventListener("input" , () => {
+        const sendButton = this.shadow.querySelector(".send-button")
+        const disabledButton = this.shadow.querySelector(".send-button button")
             
-            const sendButton = this.shadow.querySelector(".send-button")
-            const disabledButton = this.shadow.querySelector(".send-button button")
+
+        input.addEventListener("input", () => {
+
             if (input.value.length > 0) {
                 sendButton.classList.add("active");
                 disabledButton.disabled = false;
@@ -169,17 +170,20 @@ class UserInput extends HTMLElement {
                 sendButton.classList.remove("active");
                 disabledButton.disabled = true;
             }
-            
-            sendButton.addEventListener("click", () => 
-                document.dispatchEvent(new CustomEvent('start-chat', {
-                    
 
-                }))
-            )
+
+        })
+
+        sendButton.addEventListener("click", (event) =>{
+            // alert("hola");
+            event.preventDefault();
+            document.dispatchEvent(new CustomEvent('start-chat', {
+
+            }))
         })
     }
 
-    
+
 
 }
 
