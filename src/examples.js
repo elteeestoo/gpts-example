@@ -3,8 +3,13 @@ class Examples extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'open' });
+        document.addEventListener('start-chat', this.handleStartChat.bind(this)); 
+        
+
     }
-  
+
+    handleStartChat()
+
     connectedCallback() {
   
         document.addEventListener("showModalDelete", (event => {
@@ -203,6 +208,7 @@ class Examples extends HTMLElement {
               }
               
           })
+          
       }
   
       

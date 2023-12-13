@@ -170,6 +170,12 @@ class UserInput extends HTMLElement {
                 disabledButton.disabled = true;
             }
             
+            sendButton.addEventListener("click", () => 
+                document.dispatchEvent(new CustomEvent('start-chat', {
+                    
+
+                }))
+            )
         })
     }
 
