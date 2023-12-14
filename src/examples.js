@@ -31,10 +31,11 @@ class Examples extends HTMLElement {
         /*html*/`
       <style>
         .examples{
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        justify-content: center;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 1rem;
         }
 
         .example{

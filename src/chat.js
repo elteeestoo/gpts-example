@@ -8,7 +8,8 @@ class Chat extends HTMLElement {
     }
     
     handleStartChat() {
-        this.shadow.innerHTML = ""
+        this.shadow.querySelector('.welcome').remove();
+        this.shadow.querySelector('.conversation').classList.add('active');
     }
 
     handleNewChat() {
@@ -35,6 +36,11 @@ class Chat extends HTMLElement {
             flex-direction: column;
             justify-content: center;
             min-height: 75vh;
+            margin-bottom: 1rem;
+        }
+
+        .conversation.active{
+            min-height: 88vh;
         }
 
         .welcome{
