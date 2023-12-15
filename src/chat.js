@@ -5,6 +5,7 @@ class Chat extends HTMLElement {
         this.shadow = this.attachShadow({ mode: 'open' });
         document.addEventListener('start-chat', this.handleStartChat.bind(this)); 
         document.addEventListener('new-chat', this.handleNewChat.bind(this))
+        document.addEventListener('send-message', this.handleSendMessage.bind(this))
     }
     
     handleStartChat() {
@@ -14,6 +15,11 @@ class Chat extends HTMLElement {
 
     handleNewChat() {
         this.render()
+    }
+
+    handleSendMessage = event =>{
+        this.newUserMessage(event.detail.text);
+        this.newModelResponse(event.detail.text);
     }
 
     connectedCallback() {
@@ -30,6 +36,18 @@ class Chat extends HTMLElement {
         this.shadow.innerHTML =
         /*html*/`
       <style>
+
+        @font-face {
+            font-family: 'SoehneBuch'; 
+            font-style: normal; 
+            font-weight: normal; 
+            src: url('soehne-buch.woff2') format('woff2'); 
+        }
+
+        :host{
+            width: 100%;
+
+        }
         .conversation{
             align-items: center;
             display: flex;
@@ -37,10 +55,83 @@ class Chat extends HTMLElement {
             justify-content: center;
             min-height: 75vh;
             margin-bottom: 1rem;
+            width: 100%;
         }
 
         .conversation.active{
+            align-items: flex-start;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
             min-height: 88vh;
+            
+        }
+
+        .conversation.active:first-child{
+            display: flex;
+            align-items: center:
+
+        }
+        .user-content{
+            margin-top:
+            justify-content: space-between;
+            width:100%;
+            margin-bottom: 2rem;
+            height: 100%;
+            
+        }
+        
+        .user-title{
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .user-title-name{
+            color: white;
+            font-family: 'SoehneBuch', sans-serif; 
+
+
+        }
+        .user-title-logo img{
+            width: 2rem;
+            border-radius: 25px;
+        }
+
+        .user-content-text{
+            color:  white;
+            font-family: 'SoehneBuch', sans-serif; 
+
+        }
+
+        .chat-content{
+            justify-content: space-between;
+            width:100%;
+        }
+        
+        .chat-title{
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .chat-title-name{
+            font-family: 'SoehneBuch', sans-serif; 
+
+            color: white
+        }
+        
+        .chat-content-text{
+            color: white;
+            font-family: 'SoehneBuch', sans-serif; 
+
+        }
+
+        .chat-title-logo img{
+            width: 2rem;
+            border-radius: 25px;
         }
 
         .welcome{
@@ -89,28 +180,73 @@ class Chat extends HTMLElement {
         
   
         `
-  
-          let input = this.shadow.querySelector(".input-text");
-          
-          input.addEventListener("input" , () => {
-              
-              const sendButton = this.shadow.querySelector(".send-button")
-              const disabledButton = this.shadow.querySelector(".send-button button")
-              if (input.value.length > 0) {
-                  sendButton.classList.add("active");
-                  disabledButton.disabled = false;
-              }
-  
-              if (input.value.length <= 0) {
-                  sendButton.classList.remove("active");
-                  disabledButton.disabled = true;
-              }
-              
-          })
-      }
-  
+    }
+
+    newUserMessage(prompt){
+        // alert(string)
+        const chatContent = this.shadow.querySelector(".conversation")
+
+        const question = document.createElement("div")
+        question.classList.add("user-content")
+
+        const questionTitle = document.createElement("div")
+        questionTitle.classList.add("user-title")
+        question.appendChild(questionTitle)
+
+        const userLogo = document.createElement("div")
+        userLogo.classList.add("user-title-logo")
+        questionTitle.appendChild(userLogo)
+
+        const userImage = document.createElement("img")
+        userImage.src = "images/user-avatar.png"; // Reemplaza con la URL real de tu imagen
+        userLogo.appendChild(userImage);
+
+        const userName = document.createElement("h4")
+        userName.classList.add("user-title-name")
+        userName.textContent = "Carlos Seda"
+        questionTitle.appendChild(userName)
+
+        const questionContent = document.createElement("p")
+        questionContent.classList.add("user-content-text")
+        questionContent.textContent = prompt
+        question.appendChild(questionContent)
+
+        chatContent.appendChild(question)
+
+    }
+
+    newModelResponse(){
+
+        const chatContent = this.shadow.querySelector(".conversation")
+
+        const answer = document.createElement("div")
+        answer.classList.add("chat-content")
+
+        const answerTitle = document.createElement("div")
+        answerTitle.classList.add("chat-title")
+        answer.appendChild(answerTitle)
+
+        const chatLogo = document.createElement("div")
+        chatLogo.classList.add("chat-title-logo")
+        answerTitle.appendChild(chatLogo)
+
+        const chatImage = document.createElement("img")
+        chatImage.src = "images/chatgpt-icon.webp"; // Reemplaza con la URL real de tu imagen
+        chatLogo.appendChild(chatImage);
+
+        const chatName = document.createElement("h4")
+        chatName.classList.add("chat-title-name")
+        chatName.textContent = "ChatGPT"
+        answerTitle.appendChild(chatName)
+
+        const answerContent = document.createElement("p")
+        answerContent.classList.add("chat-content-text")
+        answerContent.textContent = "pingas"
+        answer.appendChild(answerContent)
+
+        chatContent.appendChild(answer)
+    }
       
+}
   
-  }
-  
-  customElements.define('chat-component', Chat);
+customElements.define('chat-component', Chat);

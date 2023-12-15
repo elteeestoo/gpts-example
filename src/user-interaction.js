@@ -159,7 +159,7 @@ class UserInput extends HTMLElement {
         let input = this.shadow.querySelector(".input-text");
         const sendButton = this.shadow.querySelector(".send-button")
         const disabledButton = this.shadow.querySelector(".send-button button")
-            
+        
 
         input.addEventListener("input", () => {
 
@@ -177,10 +177,16 @@ class UserInput extends HTMLElement {
         })
 
         sendButton.addEventListener("click", (event) =>{
-            // alert("hola");
+            // console.log(input.value);
+            // alert(input.value);
             event.preventDefault();
             document.dispatchEvent(new CustomEvent('start-chat', {
 
+            }))
+            document.dispatchEvent(new CustomEvent('send-message', {
+                detail: {
+                    text: input.value
+                }
             }))
         })
     }

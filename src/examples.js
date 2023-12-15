@@ -197,24 +197,6 @@ class Examples extends HTMLElement {
         
   
         `
-  
-          let input = this.shadow.querySelector(".input-text");
-          
-          input.addEventListener("input" , () => {
-              
-              const sendButton = this.shadow.querySelector(".send-button")
-              const disabledButton = this.shadow.querySelector(".send-button button")
-              if (input.value.length > 0) {
-                  sendButton.classList.add("active");
-                  disabledButton.disabled = false;
-              }
-  
-              if (input.value.length <= 0) {
-                  sendButton.classList.remove("active");
-                  disabledButton.disabled = true;
-              }
-              
-          })
           
       }
   
