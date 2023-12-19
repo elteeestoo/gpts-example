@@ -63,20 +63,14 @@ class Chat extends HTMLElement {
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            min-height: 88vh;
+            min-height: 80vh;
+            padding-top: 8vh;
             
         }
-
-        .conversation.active:first-child{
-            display: flex;
-            align-items: center:
-
-        }
         .user-content{
-            margin-top:
+            
             justify-content: space-between;
             width:100%;
-            margin-bottom: 2rem;
             height: 100%;
             
         }
@@ -245,6 +239,8 @@ class Chat extends HTMLElement {
         answer.appendChild(answerContent)
 
         chatContent.appendChild(answer)
+
+        
     }
       
 }
